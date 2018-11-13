@@ -6,6 +6,7 @@ import ifts16.pp.juego.sistemas.NavegacionBase;
 import ifts16.pp.juego.sistemas.RepositorioPrincipal;
 import ifts16.pp.juego.utiles.Opcion;
 import ifts16.pp.juego.utiles.Opciones;
+import java.util.Random;
 import juego.entidades.Enemigo;
 import juego.entidades.NPC;
 import juego.sistemas.Items;
@@ -48,31 +49,25 @@ public class Navegacion extends NavegacionBase {
     
     
     public void Explorar (PersonajePro p){
-               Items it = new Items("carabina", "Fusil de alto calibre", 5);
-               Items it2 = new Items("Espada", "corta como la concha de la madre", 10);
-               ListaDeItems lb = new ListaDeItems();
-               lb.agregar(it);
-               lb.agregar(it2);
+               ListaDeItems lista = new ListaDeItems();
                
-               
-               Opcion opp = new Opcion("1", "para explorar");
-               Opcion opp2 = new Opcion("0", "para salir");
-               Opciones opss = new Opciones();
-               opss.agregar(opp);
-               opss.agregar(opp2);
                IOBase.mostrarTexto("Se dice que hay 2 objetos en este lugar");
-               Opcion opcion = IOBase.elegirOpcion(opss);
-               
-        
-                do{
-                   Items resultado = lb.Azaroso();
-                   if(resultado!=null){
-                   p.agregarLP(resultado);
-                   opcion = IOBase.elegirOpcion(opss);
-                   }else{
-                   opcion = IOBase.elegirOpcion(opss);
+               IOBase.ingresarTexto("Ingresa cualquier tecla para comenzar a explorar");
+               Random r = new Random();
+               int r1;
+               int r2;
+               boolean coinciden = false;
+               while(coinciden == false){
+                   r1 = r.nextInt(2);
+                   r2 = r.nextInt(2);
+                   if(r1 == r2){
+                       int r3 = r.nextInt(5);
+                       lista.conseguirItemRandom(r3);
+                       coinciden = true;
                    }
-               }while(opcion.getComando().equalsIgnoreCase(opp2.getComando()));
+               }
+               
+               
                 
     }
 

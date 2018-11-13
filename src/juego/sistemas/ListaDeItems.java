@@ -48,5 +48,16 @@ public class ListaDeItems {
         }
         return seleccionado ;
     }
+    
+    public void conseguirItemRandom(int r3){
+        for(int i = 0; i< this.Listita.size(); i++){
+            if(i == r3){
+                IOBase.mostrarTexto("Se encontro el objeto: " + this.Listita.get(i).getNombre());
+                this.Listita.remove(i);
+            }
+        }
+    }
+    
+    
   
 }
