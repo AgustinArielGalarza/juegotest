@@ -64,14 +64,16 @@ public class Navegacion extends NavegacionBase {
                Opcion opcion = IOBase.elegirOpcion(opss);
                
         
-                while(opcion.getComando().equalsIgnoreCase(opp.getComando())){
+                do{
                    Items resultado = lb.Azaroso();
                    if(resultado!=null){
                    p.agregarLP(resultado);
                    opcion = IOBase.elegirOpcion(opss);
+                   }else{
+                   opcion = IOBase.elegirOpcion(opss);
                    }
-               }
-                opcion = IOBase.elegirOpcion(opss);
+               }while(opcion.getComando().equalsIgnoreCase(opp2.getComando()));
+                
     }
 
     

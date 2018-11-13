@@ -33,22 +33,20 @@ public class ListaDeItems {
         
     }
     public Items Azaroso(){
-        Random azar= new Random(3);
+        Random azar= new Random(5);
         int azarlo = azar.nextInt();
+        Items seleccionado = null;
         for (int i=0; i<this.Listita.size();i++){
         if (this.Listita.get(i).getID() == azarlo){
             IOBase.mostrarTexto("Se encontro un Objeto: " +this.Listita.get(i));
-            return this.Listita.get(i);
+            seleccionado = this.Listita.get(i);
+        }else{
+            
+         IOBase.mostrarTexto("No se encontro nada");
+         seleccionado = null;
         }
-        
         }
-       IOBase.mostrarTexto("No se encontro nada");
-       return null;
+        return seleccionado ;
     }
-    public void resultadoAzar(){
-        if (Azaroso()==null){
-            Azaroso();
-        }
-    }
-
+  
 }
