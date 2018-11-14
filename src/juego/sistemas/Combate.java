@@ -10,7 +10,9 @@ import juego.entidades.PersonajePro;
 public class Combate {
 
     
-public void Luchar (PersonajePro p, Enemigo e) throws InterruptedException{
+public void Luchar (PersonajePro p) throws InterruptedException{
+    Enemigo e = new Enemigo("Enemigo");
+    RepositorioPrincipal.agregar(e);
     Opcion atac = new Opcion("1","atacar");
     Opcion cura = new Opcion("2","curarse\n");
     Opciones opsL = new Opciones();
