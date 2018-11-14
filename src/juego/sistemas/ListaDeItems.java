@@ -41,12 +41,30 @@ public class ListaDeItems {
             IOBase.mostrarTexto("Se encontro un Objeto: " +this.Listita.get(i));
             seleccionado = this.Listita.get(i);
         }else{
-            
-         IOBase.mostrarTexto("No se encontro nada");
-         seleccionado = null;
+           seleccionado = null;
         }
         }
         return seleccionado ;
     }
-  
-}
+  public boolean consegirItemsRandom(int r3,PersonajePro p) throws InterruptedException{
+      boolean resultado = false;
+      for( int i =  0 ; i <  this . Listita . size (); i ++ ) {
+            if(i == r3){
+                IOBase . mostrarTexto ( " Se encontro el objeto: "  +  this. Listita . get (i) . getNombre ());
+                p.agregarLP(this.Listita.get(i));
+                this . Listita . remove(i);
+                resultado = true;
+            }else{
+                IOBase.mostrarTexto("no se encontro nada...");
+                resultado=false;
+                if(resultado == false){
+                    
+                    Navegacion nv = new Navegacion();
+                    nv.Explorar(p);
+                }
+            }
+        }
+      return resultado;
+    }
+  }
+

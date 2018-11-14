@@ -6,6 +6,7 @@ import ifts16.pp.juego.sistemas.NavegacionBase;
 import ifts16.pp.juego.sistemas.RepositorioPrincipal;
 import ifts16.pp.juego.utiles.Opcion;
 import ifts16.pp.juego.utiles.Opciones;
+import java.util.Random;
 import juego.entidades.Enemigo;
 import juego.entidades.NPC;
 import juego.sistemas.Items;
@@ -17,7 +18,7 @@ import juego.entidades.PersonajePro;
  */
 public class Navegacion extends NavegacionBase {
 
-    public void RealizarViajePrincipal(PersonajePro Protago, Enemigo Enem ) throws InterruptedException{
+    public void RealizarViajePrincipal(PersonajePro Protago) throws InterruptedException{
         //menu
         Opcion OP = new Opcion("1", "Buscar Informacion");
         Opcion OP2 = new Opcion("2", "Ir a luchar");
@@ -35,7 +36,7 @@ public class Navegacion extends NavegacionBase {
                break;
            case "2":
                Combate cbt = new Combate();
-               cbt.Luchar(Protago ,Enem );
+               cbt.Luchar(Protago);
                break;   
            case "3":
                Explorar(Protago);
@@ -47,7 +48,7 @@ public class Navegacion extends NavegacionBase {
        
     
     
-    public void Explorar (PersonajePro p){
+    public void Explorar (PersonajePro p) throws InterruptedException{
                Items it = new Items("carabina", "Fusil de alto calibre", 5);
                Items it2 = new Items("Espada", "corta como la concha de la madre", 10);
                ListaDeItems lb = new ListaDeItems();
@@ -60,24 +61,32 @@ public class Navegacion extends NavegacionBase {
                Opciones opss = new Opciones();
                opss.agregar(opp);
                opss.agregar(opp2);
+                       
                IOBase.mostrarTexto("Se dice que hay 2 objetos en este lugar");
                Opcion opcion = IOBase.elegirOpcion(opss);
-               
-        
-                do{
-                   Items resultado = lb.Azaroso();
-                   if(resultado!=null){
-                   p.agregarLP(resultado);
-                   opcion = IOBase.elegirOpcion(opss);
-                   }else{
-                   opcion = IOBase.elegirOpcion(opss);
-                   }
-               }while(opcion.getComando().equalsIgnoreCase(opp2.getComando()));
-                
-    }
+               if(opcion.getComando().equalsIgnoreCase(opp.getComando())){
+               Random r =  new  Random ();  
+               int r1;
+               int r2;
+               boolean coincidencia  =  false ;
+               while (coincidencia ==  false ) {
+                   r1 = r.nextInt (2);
+                   r2 = r.nextInt (2);
+                   if (r1 == r2) {
+                       int r3 = r.nextInt(5);
+                       r3=r.nextInt();
+                       lb.consegirItemsRandom(r3,p);
+                       coincidencia =true ;
+                       }
+               }
+               }
+               else if(opcion.getComando().equalsIgnoreCase(opp2.getComando())){
+                   RealizarViajePrincipal(p);
+               }
+               }
 
-    
-    
+               
+
     
     public void BuscarInformacion (){
                 NPC npc1 = new NPC("Cleira");
@@ -88,6 +97,27 @@ public class Navegacion extends NavegacionBase {
                 RepositorioPrincipal.agregar(npc3);
 
     }
+       public void navegacionNpc (){
+        Opcion acept = new Opcion("1", "Aceptar");
+        Opcion volver = new Opcion("2","Volver");
+        Opciones opsC = new Opciones();
+        opsC.agregar(acept);
+        opsC.agregar(volver);
+        IOBase.borrar();
+        Opcion preguntar = IOBase.elegirOpcion(opsC);
+        
+        do{
+            
+            switch (preguntar.getComando()){
+                case "1":
+//                    Conversacion1(preguntar, acept, volver, opsC);break;
+                    
+            
+                case"0":default: break;
+           }
+        }while (preguntar.getComando().equalsIgnoreCase(opsC.comandoElegido(0)));
+    }
+    
 }
 
 

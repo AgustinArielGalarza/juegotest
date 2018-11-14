@@ -7,6 +7,7 @@ import ifts16.pp.juego.sistemas.IOBase;
 import ifts16.pp.juego.utiles.Opcion;
 import ifts16.pp.juego.utiles.Opciones;
 import juego.entidades.PersonajePro;
+import juego.sistemas.Navegacion;
 
 public class NPC extends PersonajeAbstracto implements Hablador{
 
@@ -16,34 +17,10 @@ public class NPC extends PersonajeAbstracto implements Hablador{
         super(nombre);
     }
  
-    public void Conversacion (PersonajePro e) throws InterruptedException{
-        
-   
-}
-    public void navegacionNpc (){
-        Opcion acept = new Opcion("1", "Aceptar");
-        Opcion volver = new Opcion("2","Volver");
-        Opciones opsC = new Opciones();
-        opsC.agregar(acept);
-        opsC.agregar(volver);
-        IOBase.borrar();
-        Opcion preguntar = IOBase.elegirOpcion(opsC);
-        
-        do{
-            
-            switch (preguntar.getComando()){
-                case "1":
-//                    Conversacion1(preguntar, acept, volver, opsC);break;
-                    
-            
-                case"0":default: break;
-           }
-        }while (preguntar.getComando().equalsIgnoreCase(opsC.comandoElegido(0)));
-    }
-    
-    
     
     public void Conversacion1 (Opcion preguntar, Opcion acept ,Opcion volver,Opciones opsC) throws InterruptedException{
+        Navegacion menuConv = new Navegacion();
+        
         IOBase.borrar();
         IOBase.mostrarTexto("Hola mi nombre es "+this.nombre+  
                 "\nBienvenido a la aldea Dalí....");

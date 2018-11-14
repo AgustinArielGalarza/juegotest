@@ -6,6 +6,7 @@ import ifts16.pp.juego.sistemas.RepositorioPrincipal;
 import java.awt.Color;
 import java.awt.EventQueue;
 import juego.entidades.Enemigo;
+import juego.entidades.NPC;
 import juego.entidades.PersonajePro;
 import juego.sistemas.Fabrica;
 import juego.sistemas.Navegacion;
@@ -45,17 +46,17 @@ public class Juegoant {
         Thread.sleep(1000);
         
         //Creacion de Personajes
-        Enemigo Enem = new Enemigo("Enemigo");
+        
         PersonajePro Protago = new PersonajePro("Mario Bros");
         RepositorioPrincipal.agregar(Protago);
-        RepositorioPrincipal.agregar(Enem);
         IOBase.mostrarTexto(Protago.getNombre());
         IOBase.mostrarTexto(Protago.Imagen());
         Thread.sleep(1700);
         
+
         //menu principal
         Navegacion Menu = new Navegacion();
-        Menu.RealizarViajePrincipal(Protago,Enem);
+        Menu.RealizarViajePrincipal(Protago);
     
      
 }
